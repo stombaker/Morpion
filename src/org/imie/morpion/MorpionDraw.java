@@ -1,7 +1,13 @@
 package org.imie.morpion;
 
-/**
- * Created by Stombaker on 08/10/2014.
- */
-public class MorpionDraw {
+import javax.swing.*;
+import java.awt.*;
+
+public class MorpionDraw extends JPanel {
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D graphics2D = (Graphics2D)g;
+        graphics2D.drawLine(0, 0, 300, 300);
+    }
 }
