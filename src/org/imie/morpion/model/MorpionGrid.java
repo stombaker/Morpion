@@ -23,11 +23,11 @@ public class MorpionGrid {
         }
     }
 
-    private Piece get(int x, int y) {
+    public Piece get(int x, int y) {
         return grid[y][x];
     }
 
-    private void set(int x, int y, Piece piece) {
+    public void set(int x, int y, Piece piece) {
         grid[y][x] = piece;
     }
 
