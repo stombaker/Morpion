@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import org.imie.morpion.model.Game;
 import org.imie.morpion.model.MorpionGrid;
 import org.imie.morpion.model.Piece;
 
@@ -30,13 +31,20 @@ public class MorpionDraw extends JPanel {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+            }
+
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+            }
+
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+            }
+
             @Override
-            public void mouseExited(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {
+            }
         });
     }
 
@@ -44,23 +52,28 @@ public class MorpionDraw extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.clearRect(0, 0, 300, 300);
-        graphics2D.drawLine(100, 0, 100, 300);
-        graphics2D.drawLine(200, 0, 200, 300);
-        graphics2D.drawLine(0, 100, 300, 100);
-        graphics2D.drawLine(0, 200, 300, 200);
+        Game currentGame = view.getModel().getCurrentGame();
+        if (!currentGame.isEnded()) {
+            graphics2D.clearRect(0, 0, 300, 300);
+            graphics2D.drawLine(100, 0, 100, 300);
+            graphics2D.drawLine(200, 0, 200, 300);
+            graphics2D.drawLine(0, 100, 300, 100);
+            graphics2D.drawLine(0, 200, 300, 200);
 
-        MorpionGrid morpionGrid = view.getModel().getCurrentGame().getMorpionGrid();
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
-                morpionGrid.get(x, y);
-                if (morpionGrid.get(x, y) == Piece.CIRCLE) {
-                    drawCircle(graphics2D, x, y);
-                }
-                if (morpionGrid.get(x, y) == Piece.CROSS) {
-                    drawCross(graphics2D, x, y);
+            MorpionGrid morpionGrid = currentGame.getMorpionGrid();
+            for (int y = 0; y < 3; y++) {
+                for (int x = 0; x < 3; x++) {
+                    morpionGrid.get(x, y);
+                    if (morpionGrid.get(x, y) == Piece.CIRCLE) {
+                        drawCircle(graphics2D, x, y);
+                    }
+                    if (morpionGrid.get(x, y) == Piece.CROSS) {
+                        drawCross(graphics2D, x, y);
+                    }
                 }
             }
+        } else {
+            graphics2D.drawString(currentGame.getWinner() + " did it!", 125, 125);
         }
     }
 

@@ -106,7 +106,7 @@ public class MorpionGrid {
     }
 
     private boolean winHereBottom(int x, int y) {
-        if (x + align <= width) {
+        if (y + align <= width) {
             for (int i = 1 ; i < align ; i++) {
                 if (get(x, y) != get(x, y + i)) {
                     return false;

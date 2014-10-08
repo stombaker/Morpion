@@ -17,16 +17,28 @@ public class Controller implements ViewListener {
 
     public void start() {
         model.createGame();
+        model.getCurrentGame().setCurrent(Piece.CROSS);
+        model.gameStart();
     }
 
     @Override
     public void onClick(int x, int y) {
         Game game = model.getCurrentGame();
-        if (game.getMorpionGrid().get(x, y) == Piece.NONE) {
-            game.getMorpionGrid().set(x, y, game.getCurrent());
-            if (game.getMorpionGrid().checkEnd()) {
-                game.setWinner(game.getMorpionGrid().getWinner());
-                model.saveGame(game);
+        if (!game.isEnded()) {
+            if (game.getMorpionGrid().get(x, y) == Piece.NONE) {
+                Piece piece = model.getCurrentGame().getCurrent();
+                if (piece == Piece.CROSS) {
+                    game.getMorpionGrid().set(x, y, Piece.CROSS);
+                    game.setCurrent(Piece.CIRCLE);
+                } else {
+                    game.getMorpionGrid().set(x, y, Piece.CIRCLE);
+                    game.setCurrent(Piece.CROSS);
+                }
+                if (game.isEnded()) {
+                    model.saveGame(game);
+                    model.gameEnd();
+                }
+                model.gameUpdate();
             }
         }
     }

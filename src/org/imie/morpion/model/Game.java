@@ -3,7 +3,6 @@ package org.imie.morpion.model;
 public class Game {
     private String player1;
     private String player2;
-    private Piece winner = null;
     private Piece current;
 
     private final MorpionGrid morpionGrid;
@@ -29,11 +28,11 @@ public class Game {
     }
 
     public Piece getWinner() {
-        return winner;
+        return morpionGrid.getWinner();
     }
 
-    public void setWinner(Piece winner) {
-        this.winner = winner;
+    public boolean isEnded() {
+        return morpionGrid.checkEnd();
     }
 
     public Piece getCurrent() {
