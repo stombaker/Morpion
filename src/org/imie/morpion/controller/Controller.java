@@ -35,11 +35,16 @@ public class Controller implements ViewListener {
                     game.setCurrent(Piece.CROSS);
                 }
                 if (game.isEnded()) {
+                    game.setPlayer1(view.getPlayer1());
+                    game.setPlayer2(view.getPlayer2());
                     model.saveGame(game);
                     model.gameEnd();
                 }
                 model.gameUpdate();
             }
+        } else {
+            model.createGame();
+            model.gameStart();
         }
     }
 

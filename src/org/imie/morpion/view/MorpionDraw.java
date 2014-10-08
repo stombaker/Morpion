@@ -16,6 +16,7 @@ public class MorpionDraw extends JPanel {
     public MorpionDraw(View view) {
         this.view = view;
         setSize(new Dimension(300, 300));
+        setPreferredSize(new Dimension(300, 300));
         bindEvents();
     }
 

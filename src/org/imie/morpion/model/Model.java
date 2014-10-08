@@ -43,8 +43,12 @@ public class Model {
     }
 
     public void gameEnd() {
-        for (ModelListener modelListener: modelListenerList) {
+        for (ModelListener modelListener : modelListenerList) {
             modelListener.onGameEnd(currentGame);
         }
+    }
+
+    public List<Game> getHistory() {
+        return history;
     }
 }
