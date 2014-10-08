@@ -1,13 +1,17 @@
-package org.imie.morpion;
+package org.imie.morpion.view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.HeadlessException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFrame;
 
 public class View extends JFrame {
-
+	private List <ViewListener> viewListenerList=new ArrayList<ViewListener>();
     public View() throws HeadlessException {
         super("Morpion");
-        MorpionDraw morpionDraw = new MorpionDraw();
+        MorpionDraw morpionDraw = new MorpionDraw(null, null);
         morpionDraw.setSize(new Dimension(300, 300));
         add(morpionDraw);
         morpionDraw.repaint();
