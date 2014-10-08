@@ -86,10 +86,14 @@ public class MorpionGrid {
      * @return  true if we win with this case, false otherwise
      */
     private boolean winHere(int x, int y) {
-        return  winHereRight(x, y) ||
-                winHereBottom(x, y) ||
-                winHereBottomLeft(x, y) ||
-                winHereBottomRight(x, y);
+        if (get(x, y) != Piece.NONE) {
+            return winHereRight(x, y) ||
+                    winHereBottom(x, y) ||
+                    winHereBottomLeft(x, y) ||
+                    winHereBottomRight(x, y);
+        } else {
+            return false;
+        }
     }
 
     private boolean winHereRight(int x, int y) {
